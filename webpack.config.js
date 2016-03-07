@@ -31,6 +31,9 @@ const config = {
     publicPath: '/build/',
   },
   module: {
+    preLoaders: [
+      { test: /\.js$/, loaders: ['eslint'], exclude: /node_modules/ },
+    ],
     loaders: [
       { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
       {
@@ -44,6 +47,9 @@ const config = {
       },
       // TODO add loaders for images, fonts, svg
     ],
+  },
+  eslint: {
+    configFile: './.eslintrc.js',
   },
   postcss() {
     return [require('postcss-modules-values')]
@@ -66,15 +72,6 @@ if (process.env.NODE_ENV === 'development') {
         'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
       ].concat(config.entry.app),
       vendor: config.entry.vendor,
-    },
-    module: {
-      preLoaders: [
-        { test: /\.js$/, loaders: ['eslint'], exclude: /node_modules/ },
-      ],
-      loaders: config.module.loaders,
-    },
-    eslint: {
-      configFile: './.eslintrc.js',
     },
     plugins: config.plugins.concat([new webpack.HotModuleReplacementPlugin()]),
   })
