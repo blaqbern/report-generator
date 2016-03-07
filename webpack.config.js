@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
 
+const port = process.env.PORT
 const development = process.env.NODE_ENV === 'development'
 const noDevtools = require('yargs').argv.no_devtools
 
@@ -72,9 +73,14 @@ if (process.env.NODE_ENV === 'development') {
     devtool: '#eval-source-maps',
     entry: {
       app: [
-        'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+        `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`,
       ].concat(config.entry.app),
       vendor: config.entry.vendor,
+    },
+    output: {
+      path: config.output.path,
+      filename: config.output.filename,
+      publicPath: `http://localhost:${port}${config.output.publicPath}`,
     },
     plugins: config.plugins.concat([new webpack.HotModuleReplacementPlugin()]),
   })

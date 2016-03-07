@@ -15,7 +15,8 @@
     "dev": {
       "command": "npm start",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "PORT": 3000
       }
     },
     "prod": {

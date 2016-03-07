@@ -8,7 +8,7 @@ const webpackConfig = require('./webpack.config')
 const electron = require('electron-prebuilt')
 const app = require('express')()
 
-const port = 3000
+const port = process.env.PORT
 
 const compiler = webpack(webpackConfig)
 
@@ -31,7 +31,7 @@ app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 )
 
-app.listen('3000', 'localhost', (err) => {
+app.listen(port, 'localhost', (err) => {
   if (err) {
     console.log(`DEV_SERVER ERROR: ${err}`)
   } else {
