@@ -27,7 +27,7 @@ const config = {
   },
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/build/',
   },
   module: {
@@ -60,7 +60,10 @@ const config = {
       __NO_DEV_TOOLS__: noDevtools,
     }),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js'
+    }),
   ],
 }
 
