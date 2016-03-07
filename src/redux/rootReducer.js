@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import list from './modules/list';
-import visibilityFilter from './modules/visibilityFilter';
+import { combineReducers } from 'redux'
+import pendingFolders from './modules/pendingFolders'
+import recentlyCompleted from './modules/recentlyCompleted'
 
 const rootReducer = combineReducers({
-  list,
-  visibilityFilter,
-});
+  pendingFolders,
+  recentlyCompleted,
+})
 
-export default rootReducer;
+export default rootReducer

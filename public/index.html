@@ -6,7 +6,14 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="build/vendor.bundle.js"></script>
-    <script src="build/bundle.js"></script>
+    <script>
+      function addBundleToDOM(script) {
+        const element = document.createElement('script')
+        element.src = script
+        document.body.appendChild(element)
+      }
+      addBundleToDOM("http://localhost:3000/build/vendor.bundle.js")
+      addBundleToDOM("http://localhost:3000/build/bundle.js")
+    </script>
   </body>
 </html>

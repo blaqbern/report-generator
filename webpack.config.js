@@ -1,19 +1,24 @@
-'use strict';
+const path = require('path')
+const fs = require('fs')
+const webpack = require('webpack')
 
-const path = require('path');
-const webpack = require('webpack');
+const development = process.env.NODE_ENV === 'development'
+const noDevtools = require('yargs').argv.no_devtools
 
-const development = process.env.NODE_ENV === 'development';
-const noDevtools = require('yargs').argv.no_devtools;
+const APP_ENTRY = path.join(__dirname, 'src', 'index.js')
+const BUILD_PATH = path.join(__dirname, 'public', 'build')
 
-const APP_ENTRY = path.join(__dirname, 'src', 'index.js');
-const VENDOR = [
-  'react',
-  'redux',
-  'redux-devtools',
-  'react-redux',
-];
-const BUILD_PATH = path.join(__dirname, 'public', 'build');
+function grabDependencies(dependencies) {
+  const pkg = JSON.parse(fs.readFileSync('./package.json'))
+  return Object.keys(pkg.devDependencies)
+    .concat(Object.keys(pkg.dependencies))
+    .filter(dependency => dependencies.includes(dependency))
+}
+
+const VENDOR = grabDependencies([
+  /react[-]?[a-z]*/,
+  /redux[-]?[a-z]*/,
+])
 
 const config = {
   entry: {
@@ -40,8 +45,8 @@ const config = {
       // TODO add loaders for images, fonts, svg
     ],
   },
-  postcss: function() {
-    return [require('postcss-modules-values')];
+  postcss() {
+    return [require('postcss-modules-values')]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -49,17 +54,17 @@ const config = {
       __NO_DEV_TOOLS__: noDevtools,
     }),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
   ],
-};
+}
 
-let finalConfig;
 if (process.env.NODE_ENV === 'development') {
-  finalConfig = Object.assign({}, config, {
+  module.exports = Object.assign({}, config, {
     devtool: '#eval-source-maps',
     entry: {
-      app: ['webpack-hot-middleware/client'].concat(config.entry.app),
+      app: [
+        'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+      ].concat(config.entry.app),
       vendor: config.entry.vendor,
     },
     module: {
@@ -72,9 +77,7 @@ if (process.env.NODE_ENV === 'development') {
       configFile: './.eslintrc.js',
     },
     plugins: config.plugins.concat([new webpack.HotModuleReplacementPlugin()]),
-  });
+  })
 } else {
-  finalConfig = config;
+  module.exports = config
 }
-
-module.exports = finalConfig;
