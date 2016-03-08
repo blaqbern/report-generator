@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import pendingFolders from './modules/pendingFolders'
-import recentlyCompleted from './modules/recentlyCompleted'
+import currentFolder from './modules/currentFolder'
+import dateFilter from './modules/dateFilter'
+import folders from './modules/folders'
 
 const rootReducer = combineReducers({
-  pendingFolders,
-  recentlyCompleted,
+  currentFolder,
+  dateFilter,
+  folders,
 })
 
 export default rootReducer
