@@ -8,9 +8,9 @@ function PendingFolders({ folders }) {
     </div>
   )
 }
-const { object } = React.PropTypes
+const { array } = React.PropTypes
 PendingFolders.propTypes = {
-  folders: object,
+  folders: array,
 }
 
 export default PendingFolders

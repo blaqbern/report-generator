@@ -8,9 +8,9 @@ function RecentlyCompleted({ folders }) {
     </div>
   )
 }
-const { object } = React.PropTypes
+const { array } = React.PropTypes
 RecentlyCompleted.propTypes = {
-  folders: object,
+  folders: array,
 }
 
 export default RecentlyCompleted
