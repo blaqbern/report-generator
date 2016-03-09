@@ -1,6 +1,5 @@
-const SET_CURRENT_FOLDER = 'SET_CURRENT_FOLDER'
-
 // currentFolder actions
+const SET_CURRENT_FOLDER = 'SET_CURRENT_FOLDER'
 export function setCurrentFolder(id) {
   return {
     type: SET_CURRENT_FOLDER,

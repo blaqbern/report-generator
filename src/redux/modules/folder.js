@@ -1,6 +1,5 @@
-const GENERATE_REPORT = 'GENERATE_REPORT'
-
 // folder actions
+const GENERATE_REPORT = 'GENERATE_REPORT'
 export function markCompleted(url) {
   return {
     type: GENERATE_REPORT,

@@ -1,6 +1,5 @@
-const SET_DATE_FILTER = 'SET_DATE_FILTER'
-
 // dateFilter actions
+const SET_DATE_FILTER = 'SET_DATE_FILTER'
 export function setDateFilter(days) {
   return {
     type: SET_DATE_FILTER,
