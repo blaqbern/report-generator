@@ -3,7 +3,7 @@
 const path = require('path')
 const childProcess = require('child_process')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.config')
+const webpackConfig = require('../webpack.config')
 
 const electron = require('electron-prebuilt')
 const app = require('express')()
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
   )
 }
 
-app.get('*', (req, res) =>
+app.get('/public/build/', (req, res) =>
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 )
 
