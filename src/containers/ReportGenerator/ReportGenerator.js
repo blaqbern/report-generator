@@ -3,18 +3,23 @@ import { connect } from 'react-redux'
 import PendingFolders from '../../components/PendingFolders/PendingFolders'
 import RecentlyCompleted from '../../components/RecentlyCompleted/RecentlyCompleted'
 import ReportPreview from '../../components/ReportPreview/ReportPreview'
+import Spinner from '../../components/Spinner/Spinner'
 
 function ReportGenerator({
+  fetchingFolders,
   pendingFolders,
   recentlyCompleted,
   currentReport,
 }) {
-  return (
-    <div>
-      <PendingFolders folders={pendingFolders} />
-      <RecentlyCompleted folders={recentlyCompleted} />
-      <ReportPreview report={currentReport} />
-    </div>
+  return (fetchingFolders
+    ? <Spinner fetching item={'folders'} />
+    : (
+      <div>
+        <PendingFolders folders={pendingFolders} />
+        <RecentlyCompleted folders={recentlyCompleted} />
+        <ReportPreview report={currentReport} />
+      </div>
+    )
   )
 }
 const { array, object } = React.PropTypes
@@ -25,7 +30,7 @@ ReportGenerator.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const folders = state.folders.reduce((acc, nextFolder) => {
+  const folders = state.folders.list.reduce((acc, nextFolder) => {
     if (nextFolder.report) {
       return {
         pending: acc.pending,
@@ -38,6 +43,7 @@ function mapStateToProps(state) {
     }
   }, { pending: [], completed: [] })
   return {
+    fetchingFolders: state.folders.isFetching,
     pendingFolders: folders.pending,
     recentlyCompleted: folders.completed,
     currrentFolder: state.currrentFolder,
