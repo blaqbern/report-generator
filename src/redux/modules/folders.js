@@ -11,7 +11,7 @@ export function markCompleted(id) {
 }
 
 const REQUEST_FOLDERS = 'REQUEST_FOLDERS'
-export function requestFolders(operator) {
+function requestFolders(operator) {
   return {
     type: REQUEST_FOLDERS,
     payload: { operator },
@@ -19,7 +19,7 @@ export function requestFolders(operator) {
 }
 
 const RECEIVE_FOLDERS = 'RECEIVE_FOLDERS'
-export function receiveFolders(operator, json) {
+function receiveFolders(operator, json) {
   return {
     type: RECEIVE_FOLDERS,
     payload: {
@@ -31,7 +31,7 @@ export function receiveFolders(operator, json) {
 }
 
 const RECEIVE_FOLDERS_FAILED = 'RECEIVE_FOLDERS_FAILED'
-export function receiveFoldersFailed(operator, err) {
+function receiveFoldersFailed(operator, err) {
   return {
     type: RECEIVE_FOLDERS_FAILED,
     payload: { err },
