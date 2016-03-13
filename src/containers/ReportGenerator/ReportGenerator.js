@@ -11,15 +11,16 @@ function ReportGenerator({
   recentlyCompleted,
   currentReport,
 }) {
-  return (fetchingFolders
-    ? <Spinner fetching item={'folders'} />
-    : (
-      <div>
-        <PendingFolders folders={pendingFolders} />
-        <RecentlyCompleted folders={recentlyCompleted} />
-        <ReportPreview report={currentReport} />
-      </div>
-    )
+  return (
+    <div>
+      {fetchingFolders
+        ? <Spinner show fetching item={'folders'} />
+        : <Spinner hide />
+      }
+      <PendingFolders folders={pendingFolders} />
+      <RecentlyCompleted folders={recentlyCompleted} />
+      <ReportPreview report={currentReport} />
+    </div>
   )
 }
 const { array, object } = React.PropTypes
