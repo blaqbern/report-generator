@@ -61,7 +61,7 @@ export default function folders(state = {
     case 'RECEIVE_FOLDERS':
       return Object.assign({}, state, {
         isFetching: false,
-        folders: payload.folders,
+        list: payload.folders,
       })
 
     case 'GENERATE_REPORT':
