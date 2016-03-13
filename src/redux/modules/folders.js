@@ -30,10 +30,10 @@ function receiveFolders(operator, json) {
   }
 }
 
-const RECEIVE_FOLDERS_FAILED = 'RECEIVE_FOLDERS_FAILED'
+const FETCH_FOLDERS_FAILED = 'FETCH_FOLDERS_FAILED'
 function receiveFoldersFailed(err) {
   return {
-    type: RECEIVE_FOLDERS_FAILED,
+    type: FETCH_FOLDERS_FAILED,
     payload: err,
     error: true,
   }
@@ -66,7 +66,7 @@ export default function folders(state = {
         list: payload.folders,
       })
 
-    case 'RECEIVE_FOLDERS_FAILED':
+    case 'FETCH_FOLDERS_FAILED':
       return Object.assign({}, state, {
         isFetching: false,
         error: payload,
