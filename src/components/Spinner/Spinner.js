@@ -9,8 +9,8 @@ export default function Spinner({
   return (
     <div>
       <span className={styles.spinner}></span>
-      {fetching ? <span>`Fetching ${item}`</span> : null}
-      {putting ? <span>`Creating ${item}`</span> : null}
+      {fetching ? <span>{`Fetching ${item}`}</span> : null}
+      {putting ? <span>{`Creating ${item}`}</span> : null}
     </div>
   )
 }
