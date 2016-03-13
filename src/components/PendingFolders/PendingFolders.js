@@ -4,7 +4,11 @@ function PendingFolders({ folders }) {
   return (
     <div>
       <h2>{'Pending Folders'}</h2>
-      <p>{folders}</p>
+      <ul>
+        {folders.map((folder, index) =>
+          <li key={index}>{folder.test_number}</li>
+        )}
+      </ul>
     </div>
   )
 }
