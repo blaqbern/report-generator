@@ -52,6 +52,7 @@ export function fetchFolders(operator) {
 // folders reducer
 export default function folders(state = {
   isFetching: false,
+  error: null,
   list: [],
 }, action) {
   const { payload } = action
@@ -63,6 +64,12 @@ export default function folders(state = {
       return Object.assign({}, state, {
         isFetching: false,
         list: payload.folders,
+      })
+
+    case 'RECEIVE_FOLDERS_FAILED':
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: payload,
       })
 
     case 'GENERATE_REPORT':
