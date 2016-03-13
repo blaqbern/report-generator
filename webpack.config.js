@@ -2,7 +2,6 @@ const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
 
-const port = process.env.PORT
 const development = process.env.NODE_ENV === 'development'
 const noDevtools = require('yargs').argv.no_devtools
 
@@ -69,6 +68,7 @@ const config = {
 }
 
 if (process.env.NODE_ENV === 'development') {
+  const port = process.env.DEV_SERVER_PORT
   module.exports = Object.assign({}, config, {
     devtool: '#eval-source-maps',
     entry: {
