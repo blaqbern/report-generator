@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { fetchFolders } from '../../redux/modules/folders'
 import PendingFolders from '../../components/PendingFolders/PendingFolders'
 import RecentlyCompleted from '../../components/RecentlyCompleted/RecentlyCompleted'
 import ReportPreview from '../../components/ReportPreview/ReportPreview'
@@ -10,6 +11,8 @@ function ReportGenerator({
   pendingFolders,
   recentlyCompleted,
   currentReport,
+  handleFetchClick,
+  fetchError,
 }) {
   return (
     <div>
@@ -17,9 +20,17 @@ function ReportGenerator({
         ? <Spinner show fetching item={'folders'} />
         : <Spinner hide />
       }
-      <PendingFolders folders={pendingFolders} />
-      <RecentlyCompleted folders={recentlyCompleted} />
-      <ReportPreview report={currentReport} />
+      {fetchError
+        ? <div>{fetchError}</div>
+        : (
+          <div>
+            <PendingFolders folders={pendingFolders} />
+            <RecentlyCompleted folders={recentlyCompleted} />
+            <ReportPreview report={currentReport} />
+          </div>
+        )
+      }
+      <button onClick={handleFetchClick}>Get Recent Folders</button>
     </div>
   )
 }
@@ -48,7 +59,15 @@ function mapStateToProps(state) {
     pendingFolders: folders.pending,
     recentlyCompleted: folders.completed,
     currrentFolder: state.currrentFolder,
+    fetchError: folders.error,
   }
 }
 
-export default connect(mapStateToProps)(ReportGenerator)
+function mapDispatchToProps(dispatch) {
+  return { handleFetchClick: () => dispatch(fetchFolders('Blackburn')) }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReportGenerator)
