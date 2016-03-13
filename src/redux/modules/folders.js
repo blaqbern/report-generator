@@ -31,10 +31,11 @@ function receiveFolders(operator, json) {
 }
 
 const RECEIVE_FOLDERS_FAILED = 'RECEIVE_FOLDERS_FAILED'
-function receiveFoldersFailed(operator, err) {
+function receiveFoldersFailed(err) {
   return {
     type: RECEIVE_FOLDERS_FAILED,
-    payload: { err },
+    payload: err,
+    error: true,
   }
 }
 
@@ -44,7 +45,7 @@ export function fetchFolders(operator) {
     return fetch(`/operators/${operator}/folders`)
       .then(response => response.json())
       .then(json => dispatch(receiveFolders(operator, json)))
-      .catch(err => dispatch(receiveFoldersFailed(operator, err)))
+      .catch(err => dispatch(receiveFoldersFailed(err)))
   }
 }
 
