@@ -42,7 +42,7 @@ function receiveFoldersFailed(err) {
 export function fetchFolders(operator) {
   return dispatch => {
     dispatch(requestFolders(operator))
-    return fetch(`/operators/${operator}/folders`)
+    return fetch(`http://localhost:3000/operators/${operator}/folders`)
       .then(response => response.json())
       .then(json => dispatch(receiveFolders(operator, json)))
       .catch(err => dispatch(receiveFoldersFailed(err)))
