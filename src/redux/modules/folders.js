@@ -39,7 +39,7 @@ function receiveFoldersFailed(operator, err) {
 }
 
 export function fetchFolders(operator) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestFolders(operator))
     return fetch(`/operators/${operator}/folders`)
       .then(response => response.json())
