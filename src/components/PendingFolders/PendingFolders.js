@@ -1,4 +1,5 @@
 import React from 'react'
+import Folder from '../Folder/Folder'
 
 function PendingFolders({ folders }) {
   return (
@@ -6,7 +7,9 @@ function PendingFolders({ folders }) {
       <h2>{'Pending Folders'}</h2>
       <ul>
         {folders.map((folder, index) =>
-          <li key={index}>{folder.test_number}</li>
+          <li key={index}>
+            <Folder folder={folder} />
+          </li>
         )}
       </ul>
     </div>

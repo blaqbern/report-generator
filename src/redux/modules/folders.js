@@ -39,6 +39,14 @@ function receiveFoldersFailed(err) {
   }
 }
 
+const TOGGLE_EXPAND_COLLAPSE = 'TOGGLE_EXPAND_COLLAPSE'
+export function toggleExpandCollapse(test_number) {
+  return {
+    type: TOGGLE_EXPAND_COLLAPSE,
+    payload: { test_number },
+  }
+}
+
 export function fetchFolders(operator) {
   return dispatch => {
     dispatch(requestFolders(operator))
@@ -63,7 +71,9 @@ export default function folders(state = {
     case 'RECEIVE_FOLDERS':
       return Object.assign({}, state, {
         isFetching: false,
-        list: payload.folders,
+        list: payload.folders.map(folder =>
+          ({ expanded: false, fields: folder })
+        ),
       })
 
     case 'FETCH_FOLDERS_FAILED':
@@ -73,11 +83,17 @@ export default function folders(state = {
       })
 
     case 'GENERATE_REPORT':
-      return state.list.map(folder => {
-        if (payload.id === folder.id) {
-          return folderReducer(folder, action)
-        }
-        return state
+    case 'TOGGLE_EXPAND_COLLAPSE':
+      return Object.assign({}, state, {
+        list: state.list.map(folder => {
+          if (payload.test_number === folder.fields.test_number) {
+            return folderReducer({
+              expanded: folder.expanded,
+              fields: folder.fields,
+            }, action)
+          }
+          return folder
+        }),
       })
 
     default:

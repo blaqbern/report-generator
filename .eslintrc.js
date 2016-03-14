@@ -3,6 +3,7 @@ module.exports = {
     'no-undef': 1,
     'react/jsx-no-bind': [2, { 'ignoreRefs': true }],
     'semi': [2, 'never'],
+    'camelcase': 1,
   },
   'env': {
     'es6': true,
