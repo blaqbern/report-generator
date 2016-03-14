@@ -9,7 +9,7 @@
     "dev": "better-npm-run dev",
     "prod": "npm run clean && better-npm-run prod",
     "no-devtools": "better-npm-run dev -- --no_devtools",
-    "test": "npm run test"
+    "test": "echo 'There aren't any tests yet. Go right some!'"
   },
   "betterScripts": {
     "dev": {
