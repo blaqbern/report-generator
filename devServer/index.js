@@ -5,11 +5,15 @@ const app = require('express')()
 
 const port = process.env.DEV_SERVER_PORT
 
-module.exports = function startDevServer(compiler, publicPath) {
+const webpack = require('webpack')
+const webpackConfig = require('../webpack.config')
+const compiler = webpack(webpackConfig)
+
+module.exports = function startDevServer() {
   app.use(
     require('webpack-dev-middleware')(compiler, {
       noInfo: true,
-      publicPath: publicPath,
+      publicPath: webpackConfig.output.publicPath,
       stats: {
         colors: true,
       },

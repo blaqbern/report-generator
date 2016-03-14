@@ -7,13 +7,22 @@
   <body>
     <div id="root"></div>
     <script>
-      function addBundleToDOM(script) {
-        const element = document.createElement('script')
-        element.src = script
-        document.body.appendChild(element)
+      function locateResource(scripts) {
+        return scripts.map(script => {
+          const element = document.createElement('script')
+          process.env.NODE_ENV === 'development'
+            ? element.src = `http://localhost:8080/${script}`
+            : element.src = script
+          return element
+        })
       }
-      addBundleToDOM("http://localhost:8080/build/vendor.js")
-      addBundleToDOM("http://localhost:8080/build/app.js")
+
+      locateResource([
+        'build/vendor.js',
+        'build/app.js',
+      ]).forEach(bundle =>
+        document.body.appendChild(bundle)
+      )
     </script>
   </body>
 </html>
