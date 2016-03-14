@@ -58,7 +58,7 @@ function mapStateToProps(state) {
     fetchingFolders: state.folders.isFetching,
     pendingFolders: folders.pending,
     recentlyCompleted: folders.completed,
-    currrentFolder: state.currrentFolder,
+    currrentReport: state.currrentReport,
     fetchError: folders.error,
   }
 }
