@@ -10,7 +10,7 @@ class Root extends Component {
       <div className={styles.root}>
         <Header title={'NIST Tape Calibration Report Generator'} />
         <ReportGenerator />
-        {__NO_DEV_TOOLS__ ? null : <DevTools />}
+        {__DEV__ && !__NO_DEV_TOOLS__ ? <DevTools /> : null}
       </div>
     )
   }
