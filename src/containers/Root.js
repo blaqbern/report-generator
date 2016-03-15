@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Header from '../../components/Header/Header'
-import ReportGenerator from '../../containers/ReportGenerator/ReportGenerator'
-import DevTools from '../../containers/DevTools'
-import styles from './root.css'
+import Header from '../components/Header'
+import ReportGenerator from '../containers/ReportGenerator'
+import DevTools from '../containers/DevTools'
+import styles from './css/root.css'
 
 class Root extends Component {
   render() {

@@ -1,10 +1,10 @@
 import React from 'react'
-import Folder from '../Folder/Folder'
+import Folder from './Folder'
 
-function RecentlyCompleted({ folders }) {
+function PendingFolders({ folders }) {
   return (
     <div>
-      <h2>{'Recently Completed Folders'}</h2>
+      <h2>{'Pending Folders'}</h2>
       <ul>
         {folders.map((folder, index) =>
           <li key={index}>
@@ -16,8 +16,8 @@ function RecentlyCompleted({ folders }) {
   )
 }
 const { array } = React.PropTypes
-RecentlyCompleted.propTypes = {
+PendingFolders.propTypes = {
   folders: array,
 }
 
-export default RecentlyCompleted
+export default PendingFolders

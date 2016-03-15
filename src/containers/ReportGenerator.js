@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchFolders } from '../../redux/modules/folders'
-import PendingFolders from '../../components/PendingFolders/PendingFolders'
-import RecentlyCompleted from '../../components/RecentlyCompleted/RecentlyCompleted'
-import ReportPreview from '../../components/ReportPreview/ReportPreview'
-import Spinner from '../../components/Spinner/Spinner'
+import { fetchFolders } from '../redux/modules/folders'
+import PendingFolders from '../components/PendingFolders'
+import RecentlyCompleted from '../components/RecentlyCompleted'
+import ReportPreview from '../components/ReportPreview'
+import Spinner from '../components/Spinner'
 
 function ReportGenerator({
   fetchingFolders,

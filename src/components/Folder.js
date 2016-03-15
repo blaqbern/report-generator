@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import FolderDetails from '../FolderDetails/FolderDetails'
-import { toggleExpandCollapse } from '../../redux/modules/folders'
-import styles from './Folder.css'
+import FolderDetails from './FolderDetails'
+import { toggleExpandCollapse } from '../redux/modules/folders'
+import styles from './css/Folder.css'
 
 function Folder({
   folder,
