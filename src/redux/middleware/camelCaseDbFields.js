@@ -25,8 +25,8 @@ const camelCaseDbFields = () => next => action => {
    * pass up. That said, I'm opposed in general to using unofficial syntax, so
    * I've included the Object.assign version below. Just remove the return
    * statement above and uncomment the snippet below. Be sure to remove the
-   * babel transform-object-rest-spread plugin from .babelrc if you don't wish
-   * to use the object-spread syntax.
+   * babel transform-object-rest-spread plugin from .babelrc and node_modules
+   * if you don't wish to use the object-spread syntax.
    */
   // const { payload } = action
   // const updatedPayload = Object.assign({}, payload, {
