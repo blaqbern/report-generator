@@ -15,7 +15,7 @@ function Folder({
         className={styles.heading}
         onClick={handleToggleExpandClick}
       >
-        {fields.test_number}
+        {fields.testNumber}
       </div>
       {expanded
         ? <FolderDetails details={fields} />
@@ -26,10 +26,10 @@ function Folder({
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  const { test_number } = ownProps.folder.fields
+  const { testNumber } = ownProps.folder.fields
   return {
     handleToggleExpandClick: () => dispatch(
-      toggleExpandCollapse(test_number)
+      toggleExpandCollapse(testNumber)
     ),
   }
 }

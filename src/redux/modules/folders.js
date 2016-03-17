@@ -27,6 +27,9 @@ function receiveFolders(operator, json) {
       folders: json,
       receivedAt: Date.now(),
     },
+    meta: {
+      receiveDbFields: true,
+    },
   }
 }
 
@@ -40,10 +43,10 @@ function receiveFoldersFailed(err) {
 }
 
 const TOGGLE_EXPAND_COLLAPSE = 'TOGGLE_EXPAND_COLLAPSE'
-export function toggleExpandCollapse(test_number) {
+export function toggleExpandCollapse(testNumber) {
   return {
     type: TOGGLE_EXPAND_COLLAPSE,
-    payload: { test_number },
+    payload: { testNumber },
   }
 }
 
@@ -86,7 +89,7 @@ export default function folders(state = {
     case 'TOGGLE_EXPAND_COLLAPSE':
       return Object.assign({}, state, {
         list: state.list.map(folder => {
-          if (payload.test_number === folder.fields.test_number) {
+          if (payload.testNumber === folder.fields.testNumber) {
             return folderReducer({
               expanded: folder.expanded,
               fields: folder.fields,

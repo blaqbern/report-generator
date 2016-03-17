@@ -5,11 +5,11 @@ function FolderDetails({
 }) {
   return (
     <div>
-      <p>{`Customer: ${details.customer_id}`}</p>
-      <p>{`PO number: ${details.p_o_number}`}</p>
-      <p>{`Date started: ${details.date_started}`}</p>
-      {details.date_completed
-        ? <p>{`Date completed: ${details.date_completed}`}</p>
+      <p>{`Customer: ${details.customerId}`}</p>
+      <p>{`PO number: ${details.pONumber}`}</p>
+      <p>{`Date started: ${details.dateStarted}`}</p>
+      {details.date_Completed
+        ? <p>{`Date completed: ${details.dateCompleted}`}</p>
         : null
       }
       {details.report
