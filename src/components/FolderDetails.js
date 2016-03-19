@@ -5,7 +5,7 @@ function FolderDetails({
 }) {
   return (
     <div>
-      <p>{`Customer: ${details.customerId}`}</p>
+      <p>{`Customer: ${details.name}`}</p>
       <p>{`PO number: ${details.pONumber}`}</p>
       <p>{`Date started: ${details.dateStarted}`}</p>
       {details.date_Completed

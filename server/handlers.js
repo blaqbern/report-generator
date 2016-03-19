@@ -5,7 +5,22 @@ module.exports = {
     // slow down response to mimic async
     setTimeout(() => {
       db.query(
-        `SELECT * FROM folder WHERE operator = '${req.params.operator}'`,
+        `
+          SELECT
+            folder.test_number,
+            folder.p_o_number,
+            folder.number_of_tests,
+            folder.date_started,
+            folder.date_completed,
+            customer.name,
+            customer.contact_name,
+            customer.contact_email,
+            customer.contact_phone
+          FROM folder
+          INNER JOIN customer
+            ON customer_id = customer.id
+          WHERE operator = '${req.params.operator}';
+        `,
         (err, rows) => {
           if (err) {
             console.error(`Internal Server error: ${err}`)
