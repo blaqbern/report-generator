@@ -29,6 +29,6 @@ module.exports = {
           res.status(200).json(rows)
         }
       )
-    }, 2000)
+    }, 500)
   },
 }
