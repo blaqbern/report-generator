@@ -42,25 +42,24 @@ ReportGenerator.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const folders = state.folders.list.reduce((acc, nextFolder) => {
+  return state.folders.list.reduce((acc, nextFolder) => {
     if (nextFolder.fields.dateCompleted) {
       return {
-        pending: acc.pending,
-        completed: acc.completed.concat([nextFolder]),
+        pendingFolders: acc.pendingFolders,
+        recentlyCompleted: acc.recentlyCompleted.concat([nextFolder]),
       }
     }
     return {
-      pending: acc.pending.concat([nextFolder]),
-      completed: acc.completed,
+      pendingFolders: acc.pendingFolders.concat([nextFolder]),
+      recentlyCompleted: acc.recentlyCompleted,
     }
-  }, { pending: [], completed: [] })
-  return {
+  }, {
+    pendingFolders: [],
+    recentlyCompleted: [],
     fetchingFolders: state.folders.isFetching,
-    pendingFolders: folders.pending,
-    recentlyCompleted: folders.completed,
     currrentReport: state.currrentReport,
-    fetchError: folders.error,
-  }
+    fetchError: state.folders.error,
+  })
 }
 
 function mapDispatchToProps(dispatch) {
