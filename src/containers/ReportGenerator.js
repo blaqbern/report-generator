@@ -17,8 +17,8 @@ function ReportGenerator({
   return (
     <div>
       {fetchingFolders
-        ? <Spinner show fetching item={'folders'} />
-        : <Spinner hide />
+        ? <Spinner fetching item={'folders'} />
+        : null
       }
       {fetchError
         ? <div>{fetchError}</div>
