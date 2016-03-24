@@ -54,9 +54,11 @@ export function fetchFolders(operator) {
   return dispatch => {
     dispatch(requestFolders(operator))
     return fetch(`http://localhost:3000/operators/${operator}/folders`)
-      .then(response => response.json())
+      .then(response => response.ok
+        ? response.json()
+        : dispatch(fetchFoldersFailed(response.statusText))
+      )
       .then(json => dispatch(receiveFolders(operator, json)))
-      .catch(err => dispatch(fetchFoldersFailed(err)))
   }
 }
 
