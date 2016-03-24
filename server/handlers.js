@@ -19,7 +19,11 @@ module.exports = {
           FROM folder
           INNER JOIN customer
             ON customer_id = customer.id
-          WHERE operator = '${req.params.operator}';
+          WHERE operator_id = (
+            SELECT id
+            FROM operator
+            WHERE last_name = '${req.params.operator}'
+          );
         `,
         (err, rows) => {
           if (err) {
