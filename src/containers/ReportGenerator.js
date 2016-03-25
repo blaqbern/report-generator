@@ -23,15 +23,19 @@ function ReportGenerator({
         ? <div>{fetchError}</div>
         : (
           <div>
-            <FolderList
-              listName={'Pending Folders'}
-              folders={pendingFolders}
-            />
-            <FolderList
-              listName={'Recently Completed'}
-              folders={recentlyCompleted}
-            />
-            <ReportPreview report={currentReport} />
+            <div style={{ float: 'left', borderRight: '1px solid gray' }}>
+              <FolderList
+                listName={'Pending Folders'}
+                folders={pendingFolders}
+              />
+              <FolderList
+                listName={'Recently Completed'}
+                folders={recentlyCompleted}
+              />
+            </div>
+            <div>
+              <ReportPreview report={currentReport} />
+            </div>
           </div>
         )
       }
