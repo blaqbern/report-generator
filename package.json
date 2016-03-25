@@ -9,7 +9,10 @@
     "dev": "better-npm-run dev",
     "prod": "npm run clean && better-npm-run prod",
     "no-devtools": "better-npm-run dev -- --no_devtools",
-    "test": "echo 'There aren't any tests yet. Go right some!'"
+    "test": "echo 'There aren't any tests yet. Go right some!'",
+    "create-db": "mysql -u root -p < db/tables/create_tables.sql",
+    "populate-db": "mysql -u root -p < db/tables/add_seed_data.sql",
+    "setup-db": "npm run create-db && npm run populate-db"
   },
   "betterScripts": {
     "dev": {
