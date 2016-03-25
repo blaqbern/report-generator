@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchFolders } from '../redux/modules/folders'
-import PendingFolders from '../components/PendingFolders'
-import RecentlyCompleted from '../components/RecentlyCompleted'
+import FolderList from '../components/FolderList'
 import ReportPreview from '../components/ReportPreview'
 import Spinner from '../components/Spinner'
 
@@ -24,8 +23,14 @@ function ReportGenerator({
         ? <div>{fetchError}</div>
         : (
           <div>
-            <PendingFolders folders={pendingFolders} />
-            <RecentlyCompleted folders={recentlyCompleted} />
+            <FolderList
+              listName={'Pending Folders'}
+              folders={pendingFolders}
+            />
+            <FolderList
+              listName={'Recently Completed'}
+              folders={recentlyCompleted}
+            />
             <ReportPreview report={currentReport} />
           </div>
         )

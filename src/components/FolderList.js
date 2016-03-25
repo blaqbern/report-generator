@@ -1,10 +1,13 @@
 import React from 'react'
 import Folder from './Folder'
 
-function PendingFolders({ folders }) {
+function FolderList({
+  listName,
+  folders,
+}) {
   return (
     <div>
-      <h2>{'Pending Folders'}</h2>
+      <h2>{listName}</h2>
       <ul>
         {folders.map((folder, index) =>
           <li key={index}>
@@ -16,8 +19,8 @@ function PendingFolders({ folders }) {
   )
 }
 const { array } = React.PropTypes
-PendingFolders.propTypes = {
+FolderList.propTypes = {
   folders: array,
 }
 
-export default PendingFolders
+export default FolderList
