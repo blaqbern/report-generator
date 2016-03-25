@@ -28,8 +28,8 @@ If you'd rather not install Node, you can still create the database using the co
 ```sh
 $ git clone https://github.com/blaqbern/report-generator.git
 $ cd report-generator
-$ $ mysql -u root -p < db/tables/create_tables.sql
-$ $ mysql -u root -p < db/tables/add_seed_data.sql
+$ mysql -u root -p < db/tables/create_tables.sql
+$ mysql -u root -p < db/tables/add_seed_data.sql
 ```
 
 ...or you can run both with a single command:
