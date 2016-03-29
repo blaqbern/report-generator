@@ -6,12 +6,12 @@ import ReportPreview from '../components/ReportPreview'
 import Spinner from '../components/Spinner'
 
 function ReportGenerator({
+  currentFolder,
+  fetchError,
   fetchingFolders,
+  handleFetchClick,
   pendingFolders,
   recentlyCompleted,
-  currentReport,
-  handleFetchClick,
-  fetchError,
 }) {
   return (
     <div>
@@ -43,11 +43,14 @@ function ReportGenerator({
     </div>
   )
 }
-const { array, object } = React.PropTypes
+const { array, bool, func, object } = React.PropTypes
 ReportGenerator.propTypes = {
+  currentFolder: object,
+  fetchError: bool,
+  fetchingFolders: bool,
+  handleFetchClick: func,
   pendingFolders: array,
   recentlyCompleted: array,
-  currentReport: object,
 }
 
 function mapStateToProps(state) {
@@ -63,11 +66,11 @@ function mapStateToProps(state) {
       recentlyCompleted: acc.recentlyCompleted,
     }
   }, {
+    currrentFolder: state.currrentFolder,
+    fetchError: state.folders.error,
+    fetchingFolders: state.folders.isFetching,
     pendingFolders: [],
     recentlyCompleted: [],
-    fetchingFolders: state.folders.isFetching,
-    currrentReport: state.currrentReport,
-    fetchError: state.folders.error,
   })
 }
 
