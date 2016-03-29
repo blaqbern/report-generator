@@ -1,24 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import FolderDetails from './FolderDetails'
+import FolderQuickLook from './FolderQuickLook'
 import { toggleExpandCollapse } from '../redux/modules/folders'
-import styles from './css/Folder.css'
+import styles from './css/FolderListItem.css'
 
-function Folder({
+function FolderListItem({
   folder,
   handleToggleExpandClick,
 }) {
   const { fields, expanded } = folder
   return (
     <div>
-      <div
-        className={styles.heading}
-        onClick={handleToggleExpandClick}
-      >
+      <div className={styles.heading}>
         {fields.testNumber}
+        <button onClick={handleToggleExpandClick}>{'⌄'}</button>
       </div>
       {expanded
-        ? <FolderDetails details={fields} />
+        ? <FolderQuickLook details={fields} />
         : null
       }
     </div>
@@ -37,4 +35,4 @@ function mapDispatchToProps(dispatch, ownProps) {
 export default connect(
   undefined,
   mapDispatchToProps
-)(Folder)
+)(FolderListItem)
