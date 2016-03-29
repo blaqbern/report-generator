@@ -2,11 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchFolders } from '../redux/modules/folders'
 import FolderList from '../components/FolderList'
-import ReportPreview from '../components/ReportPreview'
 import Spinner from '../components/Spinner'
 
 function ReportGenerator({
-  currentFolder,
   fetchError,
   fetchingFolders,
   handleFetchClick,
@@ -34,7 +32,7 @@ function ReportGenerator({
               />
             </div>
             <div>
-              <ReportPreview report={currentReport} />
+              {/* main page content here */}
             </div>
           </div>
         )
@@ -43,9 +41,8 @@ function ReportGenerator({
     </div>
   )
 }
-const { array, bool, func, object } = React.PropTypes
+const { array, bool, func } = React.PropTypes
 ReportGenerator.propTypes = {
-  currentFolder: object,
   fetchError: bool,
   fetchingFolders: bool,
   handleFetchClick: func,
@@ -66,7 +63,6 @@ function mapStateToProps(state) {
       recentlyCompleted: acc.recentlyCompleted,
     }
   }, {
-    currrentFolder: state.currrentFolder,
     fetchError: state.folders.error,
     fetchingFolders: state.folders.isFetching,
     pendingFolders: [],
