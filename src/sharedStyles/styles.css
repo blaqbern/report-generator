@@ -1,4 +1,7 @@
+@value blue from './colors.css';
+
 .clickable {
+  color: blue;
   cursor: pointer;
 }
 

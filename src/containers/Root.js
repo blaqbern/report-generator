@@ -12,15 +12,15 @@ class Root extends Component {
         <div>
           <ul>
             <li style={{ display: 'inline' }}>
-              <Link to="/">{'Home'}</Link>
+              <Link className={styles.link} to="/">{'Home'}</Link>
             </li>
             {' '}
             <li style={{ display: 'inline' }}>
-              <Link to="/measure">{'Measure'}</Link>
+              <Link className={styles.link} to="/measure">{'Measure'}</Link>
             </li>
             {' '}
             <li style={{ display: 'inline' }}>
-              <Link to="/report">{'Report'}</Link>
+              <Link className={styles.link} to="/report">{'Report'}</Link>
             </li>
           </ul>
         </div>

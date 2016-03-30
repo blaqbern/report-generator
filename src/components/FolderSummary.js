@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
+import styles from './css/FolderSummary.css'
 
 function FolderSummary({ folder }) {
   return (
     <div>
       <Link to={`report/folders/${folder.testNumber}`}>
-        <span>{`${folder.testNumber}`}</span>
+        <span className={styles.heading}>{`${folder.testNumber}`}</span>
       </Link>
       {' '}
       <span>{`${folder.numberOfTests} tapes`}</span>

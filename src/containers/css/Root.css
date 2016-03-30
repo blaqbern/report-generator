@@ -3,3 +3,7 @@
 .root {
   background: natural from '../../sharedStyles/colors.css';
 }
+
+.link {
+  composes: clickable from '../../sharedStyles/styles.css';
+}

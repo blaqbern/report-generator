@@ -1,0 +1,3 @@
+.heading {
+  composes: clickable from '../../sharedStyles/styles.css';
+}

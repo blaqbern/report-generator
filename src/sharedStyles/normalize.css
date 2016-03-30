@@ -29,6 +29,8 @@ body {
   height:100%;
 }
 
+a { text-decoration: none; }
+
 label { font-weight: bold; }
 
 table {
