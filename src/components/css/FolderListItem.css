@@ -1,6 +1,0 @@
-@value blue from '../../sharedStyles/colors.css';
-
-.heading {
-  color: blue;
-  composes: clickable from '../../sharedStyles/styles.css';
-}

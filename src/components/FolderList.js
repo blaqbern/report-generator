@@ -1,5 +1,5 @@
 import React from 'react'
-import Folder from './Folder'
+import FolderSummary from './FolderSummary'
 
 function FolderList({
   listName,
@@ -11,7 +11,7 @@ function FolderList({
       <ul>
         {folders.map((folder, index) =>
           <li key={index}>
-            <Folder folder={folder} />
+            <FolderSummary folder={folder} />
           </li>
         )}
       </ul>

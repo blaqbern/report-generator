@@ -8,17 +8,11 @@ export function markCompleted(url) {
 }
 
 // folder reducer
-export default function folder(state = {
-  expanded: false,
-  fields: {},
-}, action) {
+export default function folder(state = {}, action) {
   const { payload } = action
   switch (action.type) {
     case 'GENERATE_REPORT':
       return Object.assign({}, state, payload)
-
-    case 'TOGGLE_EXPAND_COLLAPSE':
-      return Object.assign({}, state, { expanded: !state.expanded })
 
     default:
       return state

@@ -52,7 +52,7 @@ ReportGenerator.propTypes = {
 
 function mapStateToProps(state) {
   return state.folders.list.reduce((acc, nextFolder) => {
-    if (nextFolder.fields.dateCompleted) {
+    if (nextFolder.dateCompleted) {
       return {
         pendingFolders: acc.pendingFolders,
         recentlyCompleted: acc.recentlyCompleted.concat([nextFolder]),
