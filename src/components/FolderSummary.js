@@ -1,9 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 function FolderSummary({ folder }) {
   return (
     <div>
-      <span>{`${folder.testNumber}`}</span>
+      <Link to={`report/folders/${folder.testNumber}`}>
+        <span>{`${folder.testNumber}`}</span>
+      </Link>
       {' '}
       <span>{`${folder.numberOfTests} tapes`}</span>
       <p>{`${folder.name}`}</p>

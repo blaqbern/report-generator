@@ -2,13 +2,31 @@ import 'babel-polyfill'
 
 import React from 'react'
 import { render } from 'react-dom'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import configureStore from './redux/configureStore'
 import Root from './containers/Root'
+import WelcomePage from './components/WelcomePage'
+import ReportIndex from './components/ReportIndex'
+import MeasurementConsole from './containers/MeasurementConsole'
+import ReportGenerator from './containers/ReportGenerator'
+// import CalibrationConfig from './containers/CalibrationConfig'
+import Folder from './components/Folder'
 
 render(
   <Provider store={configureStore()}>
-    <Root />
+    <Router history={hashHistory}>
+      <Route path="/" component={Root}>
+        <IndexRoute component={WelcomePage} />
+        {/* TODO create 'Calibration Config route components' */}
+        {/* <Route path="configure" component={CalibrationConfig} /> */}
+        <Route path="measure" component={MeasurementConsole} />
+        <Route path="report" component={ReportGenerator}>
+          <IndexRoute component={ReportIndex} />
+          <Route path="folders/:testNumber" component={Folder} />
+        </Route>
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

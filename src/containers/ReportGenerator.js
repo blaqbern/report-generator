@@ -5,6 +5,7 @@ import FolderList from '../components/FolderList'
 import Spinner from '../components/Spinner'
 
 function ReportGenerator({
+  children,
   fetchError,
   fetchingFolders,
   handleFetchClick,
@@ -32,7 +33,7 @@ function ReportGenerator({
               />
             </div>
             <div>
-              {/* main page content here */}
+              {children}
             </div>
           </div>
         )
@@ -41,8 +42,9 @@ function ReportGenerator({
     </div>
   )
 }
-const { array, bool, func } = React.PropTypes
+const { array, bool, func, object } = React.PropTypes
 ReportGenerator.propTypes = {
+  children: object,
   fetchError: bool,
   fetchingFolders: bool,
   handleFetchClick: func,
