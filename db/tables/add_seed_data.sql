@@ -32,6 +32,17 @@ VALUES (
   'Frank Ford',
   'frank@smithMetrology.com',
   '5559876543'
+),
+(
+  'Aspen Equipment',
+  '9870 Old Main St',
+  NULL,
+  'Aspen',
+  'CO',
+  '82309',
+  'Jimmy John',
+  'jj@aspenequip.com',
+  '5553451234'
 );
 
 INSERT INTO operator (
@@ -63,7 +74,7 @@ INSERT INTO folder (
 )
 VALUES (
   '998343-16',
-  '1',
+  '3',
   'CREDITCARD',
   '2',
   '1',
@@ -117,7 +128,7 @@ VALUES (
 ),
 (
   '998345-16',
-  '1',
+  '2',
   '010023',
   '1',
   '1',
@@ -152,7 +163,7 @@ VALUES (
 ),
 (
   '998346-16',
-  '1',
+  '3',
   '120-03948',
   '1',
   '1',
