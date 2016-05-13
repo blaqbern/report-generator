@@ -8,14 +8,7 @@ module.exports = {
         `
           SELECT
             folder.test_number,
-            folder.p_o_number,
-            folder.number_of_tests,
-            folder.date_started,
-            folder.date_completed,
-            customer.name,
-            customer.contact_name,
-            customer.contact_email,
-            customer.contact_phone
+            customer.name
           FROM folder
           INNER JOIN customer
             ON customer_id = customer.id
@@ -23,7 +16,7 @@ module.exports = {
             SELECT id
             FROM operator
             WHERE last_name = '${req.params.operator}'
-          );
+          ) AND folder.date_completed IS NULL;
         `,
         (err, rows) => {
           if (err) {

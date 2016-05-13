@@ -8,8 +8,6 @@ function FolderSummary({ folder }) {
       <Link to={`report/folders/${folder.testNumber}`}>
         <span className={styles.heading}>{`${folder.testNumber}`}</span>
       </Link>
-      {' '}
-      <span>{`${folder.numberOfTests} tapes`}</span>
       <p>{`${folder.name}`}</p>
     </div>
   )

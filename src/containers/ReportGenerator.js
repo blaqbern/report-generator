@@ -9,8 +9,7 @@ function ReportGenerator({
   fetchError,
   fetchingFolders,
   handleFetchClick,
-  pendingFolders,
-  recentlyCompleted,
+  activeFolders,
 }) {
   return (
     <div>
@@ -24,12 +23,8 @@ function ReportGenerator({
           <div>
             <div style={{ float: 'left', borderRight: '1px solid gray' }}>
               <Folders
-                listName={'Pending Folders'}
-                folders={pendingFolders}
-              />
-              <Folders
-                listName={'Recently Completed'}
-                folders={recentlyCompleted}
+                listName={'Active Folders'}
+                folders={activeFolders}
               />
             </div>
             <div>
@@ -48,28 +43,15 @@ ReportGenerator.propTypes = {
   fetchError: bool,
   fetchingFolders: bool,
   handleFetchClick: func,
-  pendingFolders: array,
-  recentlyCompleted: array,
+  activeFolders: array,
 }
 
 function mapStateToProps(state) {
-  return state.folders.list.reduce((acc, nextFolder) => {
-    if (nextFolder.dateCompleted) {
-      return {
-        pendingFolders: acc.pendingFolders,
-        recentlyCompleted: acc.recentlyCompleted.concat([nextFolder]),
-      }
-    }
-    return {
-      pendingFolders: acc.pendingFolders.concat([nextFolder]),
-      recentlyCompleted: acc.recentlyCompleted,
-    }
-  }, {
+  return {
     fetchError: state.folders.error,
     fetchingFolders: state.folders.isFetching,
-    pendingFolders: [],
-    recentlyCompleted: [],
-  })
+    activeFolders: state.folders.list,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
