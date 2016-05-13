@@ -1,7 +1,7 @@
 import React from 'react'
 import FolderSummary from './FolderSummary'
 
-function FolderList({
+function Folders({
   listName,
   folders,
 }) {
@@ -19,8 +19,8 @@ function FolderList({
   )
 }
 const { array } = React.PropTypes
-FolderList.propTypes = {
+Folders.propTypes = {
   folders: array,
 }
 
-export default FolderList
+export default Folders
