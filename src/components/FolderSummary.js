@@ -5,10 +5,10 @@ import styles from './css/FolderSummary.css'
 function FolderSummary({ folder }) {
   return (
     <div>
-      <Link to={`report/folders/${folder.testNumber}`}>
-        <span className={styles.heading}>{`${folder.testNumber}`}</span>
+      <Link to={`report/folders/${folder.fields.testNumber}`}>
+        <span className={styles.heading}>{`${folder.fields.testNumber}`}</span>
       </Link>
-      <p>{`${folder.name}`}</p>
+      <p>{`${folder.fields.name}`}</p>
     </div>
   )
 }

@@ -23,6 +23,7 @@ const startElectron = require('./startElectron')
 const handlers = require('./handlers')
 
 app.get('/operators/:operator/folders', handlers.getFolders)
+app.get('/folders/:testNumber', handlers.getFolder)
 
 app.listen(port, 'localhost', (err) => {
   if (err) {

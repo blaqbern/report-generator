@@ -24,7 +24,7 @@ function receiveFolders(operator, json) {
     type: RECEIVE_FOLDERS,
     payload: {
       operator,
-      folders: json,
+      json,
       receivedAt: Date.now(),
     },
     meta: {
@@ -68,7 +68,11 @@ export default function folders(state = {
     case 'RECEIVE_FOLDERS':
       return Object.assign({}, state, {
         isFetching: false,
-        list: payload.folders,
+        list: payload.json.map(folder => ({
+          isFetching: false,
+          error: null,
+          fields: folder,
+        })),
       })
 
     case 'FETCH_FOLDERS_FAILED':
@@ -78,10 +82,16 @@ export default function folders(state = {
       })
 
     case 'GENERATE_REPORT':
+    case 'REQUEST_FOLDER':
+    case 'RECEIVE_FOLDER':
+    case 'FETCH_FOLDER_FAILED':
       return Object.assign({}, state, {
         list: state.list.map(folder => {
-          if (payload.testNumber === folder.testNumber) {
-            return folderReducer(folder, action)
+          if (payload.testNumber === folder.fields.testNumber) {
+            return folderReducer({
+              isFetching: folder.isFetching,
+              fields: folder.fields,
+            }, action)
           }
           return folder
         }),

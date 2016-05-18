@@ -10,8 +10,7 @@ import WelcomePage from './components/WelcomePage'
 import ReportIndex from './components/ReportIndex'
 import MeasurementConsole from './containers/MeasurementConsole'
 import ReportGenerator from './containers/ReportGenerator'
-// import CalibrationConfig from './containers/CalibrationConfig'
-import Folder from './components/Folder'
+import Folder from './containers/Folder'
 
 render(
   <Provider store={configureStore()}>

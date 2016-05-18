@@ -5,18 +5,25 @@ const camelCaseDbFields = (/* store */) => next => action => {
     return next(action)
   }
 
-  const updatedFolders = action.payload.folders.map(folder =>
-    Object.keys(folder).reduce((acc, key) => ({
-      ...acc,
-      [camelCase(key)]: folder[key],
-    }), {})
-  )
+  function updateKeys(obj) {
+    if (typeof obj === 'object') {
+      return Object.keys(obj).reduce((acc, key) => ({
+        ...acc,
+        [camelCase(key)]: obj[key],
+      }), {})
+    }
+  }
+
+  const { json } = action.payload
+  const updatedJson = Array.isArray(json)
+    ? json.map(item => updateKeys(item))
+    : updateKeys(json)
 
   return next({
     ...action,
     payload: {
       ...action.payload,
-      folders: updatedFolders,
+      json: updatedJson,
     },
   })
 
