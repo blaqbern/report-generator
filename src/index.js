@@ -4,6 +4,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
+import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './redux/configureStore'
 import Root from './containers/Root'
 import WelcomePage from './components/WelcomePage'
@@ -12,9 +13,12 @@ import MeasurementConsole from './containers/MeasurementConsole'
 import ReportGenerator from './containers/ReportGenerator'
 import Folder from './containers/Folder'
 
+const store = configureStore()
+const history = syncHistoryWithStore(hashHistory, store)
+
 render(
-  <Provider store={configureStore()}>
-    <Router history={hashHistory}>
+  <Provider store={store}>
+    <Router history={history}>
       <Route path="/" component={Root}>
         <IndexRoute component={WelcomePage} />
         {/* TODO create 'Calibration Config route components' */}
