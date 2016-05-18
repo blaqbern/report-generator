@@ -1,6 +1,6 @@
 import camelCase from 'camelcase'
 
-const camelCaseDbFields = () => next => action => {
+const camelCaseDbFields = (/* store */) => next => action => {
   if (!action.meta || !action.meta.receiveDbFields) {
     return next(action)
   }
