@@ -39,6 +39,38 @@ function fetchFolderFailed(testNumber, err) {
   }
 }
 
+const REQUEST_TAPES = 'REQUEST_TAPES'
+function requestTapes(testNumber) {
+  return {
+    type: REQUEST_TAPES,
+    payload: { testNumber },
+  }
+}
+
+const RECEIVE_TAPES = 'RECEIVE_TAPES'
+function receiveTapes(testNumber, json) {
+  return {
+    type: RECEIVE_TAPES,
+    payload: {
+      testNumber,
+      json: Array.isArray(json) ? json[0] : json,
+      receivedAt: Date.now(),
+    },
+    meta: {
+      receiveDbFields: true,
+    },
+  }
+}
+
+const FETCH_TAPES_FAILED = 'FETCH_TAPES_FAILED'
+function fetchTapesFailed(testNumber, err) {
+  return {
+    type: FETCH_TAPES_FAILED,
+    payload: err,
+    error: true,
+  }
+}
+
 export function fetchFolder(testNumber) {
   return (dispatch) => {
     dispatch(requestFolder(testNumber))
@@ -48,6 +80,18 @@ export function fetchFolder(testNumber) {
         : dispatch(fetchFolderFailed(testNumber, response.statusText))
       )
       .then(json => dispatch(receiveFolder(testNumber, json)))
+  }
+}
+
+export function fetchTapes(testNumber) {
+  return dispatch => {
+    dispatch(requestTapes(testNumber))
+    fetch(`http://localhost:3000/folders/${testNumber}/tapes`)
+      .then(response => response.ok
+        ? response.json()
+        : dispatch(fetchTapesFailed(testNumber, response.statusText))
+      )
+      .then(json => dispatch(receiveTapes(testNumber, json)))
   }
 }
 
@@ -66,6 +110,7 @@ export default function folder(state = {
       return Object.assign({}, state, { isFetching: true })
 
     case 'RECEIVE_FOLDER':
+    case 'RECEIVE_TAPES':
       return Object.assign({}, state, {
         isFetching: false,
         fields: Object.assign({}, state.fields, payload.json),

@@ -2,7 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchFolders } from '../redux/modules/folders'
 import Folders from '../components/Folders'
-import Spinner from '../components/Spinner'
+import {
+  Button,
+  Col,
+  Grid,
+  Row,
+} from 'react-bootstrap'
 
 function ReportGenerator({
   children,
@@ -12,29 +17,23 @@ function ReportGenerator({
   activeFolders,
 }) {
   return (
-    <div>
-      {fetchingFolders
-        ? <Spinner fetching item={'folders'} />
-        : null
-      }
-      {fetchError
-        ? <div>{fetchError}</div>
-        : (
+    <Grid>
+      <Row>
+        <Col md={2}>
           <div>
-            <div style={{ float: 'left', borderRight: '1px solid gray' }}>
-              <Folders
-                listName={'Active Folders'}
-                folders={activeFolders}
-              />
-            </div>
-            <div>
-              {children}
-            </div>
+            <h3>Active Folders</h3>
+            {fetchError
+              ? <div>{fetchError}</div>
+              : <Folders folders={activeFolders} beingFetched={fetchingFolders} />
+            }
           </div>
-        )
-      }
-      <button onClick={handleFetchClick}>Get Recent Folders</button>
-    </div>
+          <Button bsStyle="info" onClick={handleFetchClick}>Fetch Active Folders</Button>
+        </Col>
+        <Col md={10}>
+          {children}
+        </Col>
+      </Row>
+    </Grid>
   )
 }
 const { array, bool, func, object } = React.PropTypes

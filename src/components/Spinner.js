@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './css/Spinner.css'
 
 export default function Spinner({
   fetching,
@@ -8,7 +7,6 @@ export default function Spinner({
 }) {
   return (
     <div>
-      <span className={styles.spinner}></span>
       {fetching ? <span>{`Fetching ${item}`}</span> : null}
       {putting ? <span>{`Creating ${item}`}</span> : null}
     </div>

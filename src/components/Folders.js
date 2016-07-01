@@ -1,22 +1,23 @@
 import React from 'react'
 import FolderSummary from './FolderSummary'
+import Spinner from './Spinner'
+import { ListGroup, ListGroupItem } from 'react-bootstrap'
 
 function Folders({
-  listName,
   folders,
+  beingFetched,
 }) {
-  return (
-    <div>
-      <h2>{listName}</h2>
-      <ul>
+  return beingFetched
+    ? <Spinner fetching item="Folders" />
+    : (
+      <ListGroup>
         {folders.map((folder, index) =>
-          <li key={index}>
+          <ListGroupItem key={index}>
             <FolderSummary folder={folder} />
-          </li>
+          </ListGroupItem>
         )}
-      </ul>
-    </div>
-  )
+      </ListGroup>
+    )
 }
 const { array } = React.PropTypes
 Folders.propTypes = {

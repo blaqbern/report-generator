@@ -24,6 +24,7 @@ const handlers = require('./handlers')
 
 app.get('/operators/:operator/folders', handlers.getFolders)
 app.get('/folders/:testNumber', handlers.getFolder)
+app.get('/folders/:testNumber/tapes', handlers.getFolderTapes)
 
 app.listen(port, 'localhost', (err) => {
   if (err) {

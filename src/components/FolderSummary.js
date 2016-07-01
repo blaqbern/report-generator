@@ -1,14 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router'
-import styles from './css/FolderSummary.css'
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function FolderSummary({ folder }) {
+  const { name, testNumber } = folder.fields
+  const tooltip = <Tooltip id="testNumber">{name}</Tooltip>
   return (
     <div>
-      <Link to={`report/folders/${folder.fields.testNumber}`}>
-        <span className={styles.heading}>{`${folder.fields.testNumber}`}</span>
-      </Link>
-      <p>{`${folder.fields.name}`}</p>
+      <LinkContainer to={`report/folders/${testNumber}`}>
+        <OverlayTrigger placement="right" overlay={tooltip}>
+          <Button bsStyle="link">{`${testNumber}`}</Button>
+        </OverlayTrigger>
+      </LinkContainer>
+      {/* <span>{`${folder.fields.name}`}</span> */}
     </div>
   )
 }

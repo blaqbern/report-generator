@@ -63,4 +63,25 @@ module.exports = {
       )
     }, 500)
   },
+  getFolderTapes(req, res) {
+    setTimeout(() => {
+      db.query(
+        `
+          SELECT
+            tape_ids,
+            tests
+          FROM folder
+          WHERE folder.test_number = '${req.params.testNumber}';
+        `,
+        (err, rows) => {
+          if (err) {
+            console.error(`Internal Server error: ${err}`)
+            res.status(500).send(err)
+          }
+          console.log(rows)
+          res.status(200).json(rows)
+        }
+      )
+    }, 500)
+  },
 }
